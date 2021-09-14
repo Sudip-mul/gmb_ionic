@@ -1,20 +1,216 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <!-- Header area -->
+  <div class="main-area">
+    <div class="bg-purple">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+      <div class="row paddingfive">
+        <table style="width:100%">
+          <tbody>
+            <tr>
+              <th class="main-title" style="width:70%">GMB Docrank</th>
+              <th style="width:20%">
+                <img class="drimage"
+                  src="https://www.manipalhospitals.com/uploads/doctors_photo/dr-anand-r-shenoy-consultant-interventional-cardiology.png">
+              </th>
+              <th class="dots-icon" style="width:10%">
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+              </th>
+            </tr>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Past week area at the top -->
+    <div class="row paddingfive padtop">
+      <table style="width:100%">
+        <tbody>
+          <tr class="for-duration-font">
+            <th class="duration-left" style="width:50%">Past week</th>
+            <th class="duration-right" style="width:50%">12 - 19 Sep 2021</th>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+    <!-- First box of reviews -->
+    <div class="row border-grey">
+      <div class="col-4 active">
+        <p class="cardtitle">
+          Negative Reviews
+        </p>
+        <p class="cardnum">
+          4
+        </p>
+        <p class="cardchange">
+          +30%
+        </p>
+
+      </div>
+      <div class="col-4 inactive">
+        <p class="cardtitle">
+          Neutral Reviews
+        </p>
+        <p class="cardnum">
+          0
+        </p>
+        <p class="cardchange">
+          +30%
+        </p>
+
+      </div>
+      <div class="col-4 inactive">
+        <p class="cardtitle">
+          Positive Reviews
+        </p>
+        <p class="cardnum">
+          8
+        </p>
+        <p class="cardchange">
+          +30%
+        </p>
+
+      </div>
+
+      <div class="row chips">
+        <span class="chiptext">Timings</span>
+        <span class="chiptext">Ok ok ok</span>
+        <span class="chiptext">And ?</span>
+        <span class="chiptext">Consultation cost</span>
+      </div>
+
+      <div class="row icon-btn">
+        <table style="width:100%">
+          <tbody>
+            <tr class="for-duration-font">
+              <th class="bottom-icons" style="width:15%"><i class="fa fa-whatsapp"></i></th>
+              <th class="bottom-icons" style="width:15%"><i class="fa fa-phone"></i></th>
+              <th class="bottom-icons" style="width:15%"><i class="fa fa-envelope"></i></th>
+              <th class="bottom-icons" style="width:15%"></th>
+              <th class="click-text" style="width:40%"><u>Analyze reviews</u></th>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+
+    <!-- Second box of posts -->
+    <div class="row border-grey section-space">
+      <div class="col-6 active">
+        <p class="cardtitle">
+          Posts
+        </p>
+        <p class="cardnum">
+          4
+        </p>
+        <p class="cardchange">
+          +5%
+        </p>
+
+      </div>
+      <div class="col-6 inactive">
+        <p class="cardtitle">
+          Competitor posts
+        </p>
+        <p class="cardnum">
+          18
+        </p>
+        <p class="cardchange">
+          +10%
+        </p>
+      </div>
+
+      <div class="row chips">
+        <span class="chiptext">Timings</span>
+        <span class="chiptext">Ok ok ok</span>
+        <span class="chiptext">And ?</span>
+        <span class="chiptext">Consultation cost</span>
+      </div>
+
+      <div class="row icon-btn">
+        <table style="width:100%">
+          <tbody>
+            <tr class="for-duration-font">
+              <th class="bottom-icons" style="width:15%"><i class="fa fa-whatsapp"></i></th>
+              <th class="bottom-icons" style="width:15%"><i class="fa fa-phone"></i></th>
+              <th class="bottom-icons" style="width:15%"><i class="fa fa-envelope"></i></th>
+              <th class="bottom-icons" style="width:15%"></th>
+              <th class="click-text" style="width:40%"><u>Add a post</u></th>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+
+    <!-- Third box of calls -->
+    <div class="row border-grey section-space">
+      <div class="col-6 active">
+        <p class="cardtitle">
+          Calls
+        </p>
+        <p class="cardnum">
+          4
+        </p>
+        <p class="cardchange">
+          +5%
+        </p>
+
+      </div>
+      <div class="col-6 inactive">
+        <p class="cardtitle">
+          Location searches
+        </p>
+        <p class="cardnum">
+          18
+        </p>
+        <p class="cardchange">
+          +10%
+        </p>
+      </div>
+
+      <div class="row chips">
+        <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions"
+          style="width: 90%; height: 150px; display: block;">
+        </highcharts-chart>
+      </div>
+
+      <div class="row icon-btn">
+        <table style="width:100%">
+          <tbody>
+            <tr class="for-duration-font">
+              <th class="bottom-icons" style="width:15%"><i class="fa fa-whatsapp"></i></th>
+              <th class="bottom-icons" style="width:15%"><i class="fa fa-phone"></i></th>
+              <th class="bottom-icons" style="width:15%"><i class="fa fa-envelope"></i></th>
+              <th class="bottom-icons" style="width:15%"></th>
+              <th class="click-text" style="width:40%"><u>Boost calls</u></th>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="sticky-footer">
+      <table style="width:100%">
+        <tbody>
+          <tr>
+            <th style="width:33%"><i class="fa fa-whatsapp"></i></th>
+            <th style="width:33%"><i class="fa fa-phone"></i></th>
+            <th style="width:33%"><i class="fa fa-envelope"></i></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </ion-content>
