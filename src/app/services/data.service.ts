@@ -50,7 +50,7 @@ export class DataService {
 
 getchips(reviews: any) {
   let formData  =  {
-      "reviews": reviews,
+      "reviews": reviews
     }
 
  return this.http.post<any>("https://gmbgsearch.multipliersolutions.in/getchips", (formData), this.requestOptions).pipe(map(res => {

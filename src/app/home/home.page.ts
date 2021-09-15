@@ -122,33 +122,35 @@ export class HomePage implements OnInit {
                 this.allreviews.push(reviewres['reviews']['comment'])
                 if (this.getthedate()['olddate'].toISOString() < reviewres['reviews'][i]['updateTime']){
                      if (reviewres['reviews'][i]['starRating'] == "ONE" || reviewres['reviews'][i]['starRating'] == "TWO"){
-                     this.curreviews['negreviews'].push(reviewres['reviews'][i]['comment'])
+                     this.curreviews['negreviews'].push("" + reviewres['reviews'][i]['comment'])
                       }
                      else if(reviewres['reviews'][i]['starRating'] == "FOUR" || reviewres['reviews'][i]['starRating'] == "FIVE"){
-                        this.curreviews['posreviews'].push(reviewres['reviews'][i]['comment'])
+                        this.curreviews['posreviews'].push("" + reviewres['reviews'][i]['comment'])
                      }
                      else{
-                        this.curreviews['neureviews'].push(reviewres['reviews'][i]['comment'])
+                        this.curreviews['neureviews'].push("" + reviewres['reviews'][i]['comment'])
                      }
                 }
                 else if (this.getthedate()['previous'].toISOString() < reviewres['reviews'][i]['updateTime']){
                      if (reviewres['reviews'][i]['starRating'] == "ONE" || reviewres['reviews'][i]['starRating'] == "TWO"){
-                     this.oldreviews['negreviews'].push(reviewres['reviews'][i]['comment'])
+                     this.oldreviews['negreviews'].push("" + reviewres['reviews'][i]['comment'])
                      }
                      else if(reviewres['reviews'][i]['starRating'] == "FOUR" || reviewres['reviews'][i]['starRating'] == "FIVE"){
-                     this.oldreviews['posreviews'].push(reviewres['reviews'][i]['comment'])
+                     this.oldreviews['posreviews'].push("" + reviewres['reviews'][i]['comment'])
                      }
                      else{
-                     this.oldreviews['neureviews'].push(reviewres['reviews'][i]['comment'])
+                     this.oldreviews['neureviews'].push("" + reviewres['reviews'][i]['comment'])
                      }
                }
             }
 
              console.log("Check this output")
              console.log(this.oldreviews)
-
+            //  if(this.oldreviews['negreviews'] != null || this.oldreviews['posreviews'] || this.oldreviews['neureviews']){
+             console.log(this.curreviews['negreviews'].concat(this.curreviews['posreviews']).concat(this.curreviews['neureviews']))
+                 
              this.data
-             .getchips(this.oldreviews['negreviews'] + this.oldreviews['posreviews'] + this.oldreviews['neureviews']).subscribe((revchips) => {
+             .getchips(this.curreviews['negreviews'].concat(this.curreviews['posreviews']).concat(this.curreviews['neureviews'])).subscribe((revchips) => {
                 console.log(revchips)
 
              })
