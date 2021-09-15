@@ -9,8 +9,7 @@
             <tr>
               <th class="main-title" style="width:70%">GMB Docrank</th>
               <th style="width:20%">
-                <img class="drimage"
-                  src="https://www.manipalhospitals.com/uploads/doctors_photo/dr-anand-r-shenoy-consultant-interventional-cardiology.png">
+                <img class="drimage" [src]="doctorphoto">
               </th>
               <th class="dots-icon" style="width:10%">
                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
@@ -27,8 +26,8 @@
       <table style="width:100%">
         <tbody>
           <tr class="for-duration-font">
-            <th class="duration-left" style="width:50%">Past week</th>
-            <th class="duration-right" style="width:50%">12 - 19 Sep 2021</th>
+            <th class="duration-left" style="width:50%">Past month</th>
+            <th class="duration-right" style="width:50%">{{duration}}</th>
           </tr>
 
         </tbody>
@@ -43,10 +42,11 @@
           Negative Reviews
         </p>
         <p class="cardnum">
-          4
+          {{curreviews.negreviews.length}}
         </p>
         <p class="cardchange">
-          +30%
+          {{ oldreviews.negreviews.length > 0 ? (curreviews.negreviews.length - oldreviews.negreviews.length) /
+          oldreviews.negreviews.length * 100 + "%" : curreviews.negreviews.length > 0 ? "+100%" : "-" }}
         </p>
 
       </div>
@@ -55,10 +55,11 @@
           Neutral Reviews
         </p>
         <p class="cardnum">
-          0
+          {{curreviews.neureviews.length}}
         </p>
         <p class="cardchange">
-          +30%
+          {{ oldreviews.neureviews.length > 0 ? (curreviews.neureviews.length - oldreviews.neureviews.length) /
+          oldreviews.neureviews.length * 100 + "%" : curreviews.neureviews.length > 0 ? "+100%" : "-" }}
         </p>
 
       </div>
@@ -67,10 +68,11 @@
           Positive Reviews
         </p>
         <p class="cardnum">
-          8
+          {{curreviews.posreviews.length}}
         </p>
         <p class="cardchange">
-          +30%
+          {{ oldreviews.posreviews.length > 0 ? (curreviews.posreviews.length - oldreviews.posreviews.length) /
+          oldreviews.posreviews.length * 100 + "%" : curreviews.posreviews.length > 0 ? "+100%" : "-" }}
         </p>
 
       </div>
@@ -86,9 +88,12 @@
         <table style="width:100%">
           <tbody>
             <tr class="for-duration-font">
-              <th class="bottom-icons" style="width:15%"><i class="fa fa-whatsapp"></i></th>
-              <th class="bottom-icons" style="width:15%"><i class="fa fa-phone"></i></th>
-              <th class="bottom-icons" style="width:15%"><i class="fa fa-envelope"></i></th>
+              <th class="bottom-icons" style="width:15%"><a target="_blank"
+                  href="https://wa.me/+919390586972?lang=en&text=I%20want%20to%20know%20more%20about%20reviews.%20Call%20back."><i
+                    class="fa fa-whatsapp"></i></a></th>
+              <th class="bottom-icons" style="width:15%"><a href="tel:9390586972"><i class="fa fa-phone"></i></a></th>
+              <th class="bottom-icons" style="width:15%"><a href="mailto:someone@example.com"><i
+                    class="fa fa-envelope"></i></a></th>
               <th class="bottom-icons" style="width:15%"></th>
               <th class="click-text" style="width:40%"><u>Analyze reviews</u></th>
             </tr>
@@ -98,6 +103,8 @@
       </div>
 
     </div>
+
+    <!-- <app-Morereviews></app-Morereviews> -->
 
 
     <!-- Second box of posts -->
@@ -137,9 +144,12 @@
         <table style="width:100%">
           <tbody>
             <tr class="for-duration-font">
-              <th class="bottom-icons" style="width:15%"><i class="fa fa-whatsapp"></i></th>
-              <th class="bottom-icons" style="width:15%"><i class="fa fa-phone"></i></th>
-              <th class="bottom-icons" style="width:15%"><i class="fa fa-envelope"></i></th>
+              <th class="bottom-icons" style="width:15%"><a target="_blank"
+                  href="https://wa.me/+919390586972?lang=en&text=I%20want%20to%20know%20more%20about%20posts.%20Call%20back."><i
+                    class="fa fa-whatsapp"></i></a></th>
+              <th class="bottom-icons" style="width:15%"><a href="tel:9390586972"><i class="fa fa-phone"></i></a></th>
+              <th class="bottom-icons" style="width:15%"><a href="mailto:someone@example.com"><i
+                    class="fa fa-envelope"></i></a></th>
               <th class="bottom-icons" style="width:15%"></th>
               <th class="click-text" style="width:40%"><u>Add a post</u></th>
             </tr>
@@ -187,9 +197,12 @@
         <table style="width:100%">
           <tbody>
             <tr class="for-duration-font">
-              <th class="bottom-icons" style="width:15%"><i class="fa fa-whatsapp"></i></th>
-              <th class="bottom-icons" style="width:15%"><i class="fa fa-phone"></i></th>
-              <th class="bottom-icons" style="width:15%"><i class="fa fa-envelope"></i></th>
+              <th class="bottom-icons" style="width:15%"><a target="_blank"
+                  href="https://wa.me/+919390586972?lang=en&text=I%20want%20to%20improve%20my%20digital%20presence.%20Call%20back."><i
+                    class="fa fa-whatsapp"></i></a></th>
+              <th class="bottom-icons" style="width:15%"><a href="tel:9390586972"><i class="fa fa-phone"></i></a></th>
+              <th class="bottom-icons" style="width:15%"><a href="mailto:someone@example.com"><i
+                    class="fa fa-envelope"></i></a></th>
               <th class="bottom-icons" style="width:15%"></th>
               <th class="click-text" style="width:40%"><u>Boost calls</u></th>
             </tr>
@@ -204,9 +217,11 @@
       <table style="width:100%">
         <tbody>
           <tr>
-            <th style="width:33%"><i class="fa fa-whatsapp"></i></th>
-            <th style="width:33%"><i class="fa fa-phone"></i></th>
-            <th style="width:33%"><i class="fa fa-envelope"></i></th>
+            <th style="width:33%"><a target="_blank"
+                href="https://wa.me/+919390586972?lang=en&text=I%20want%20to%20improve%20my%20digital%20presence.%20Call%20back."><i
+                  class="fa fa-whatsapp"></i></a></th>
+            <th style="width:33%"><a href="tel:9390586972"><i class="fa fa-phone"></i></a></th>
+            <th style="width:33%"><a href="mailto:someone@example.com"><i class="fa fa-envelope"></i></a></th>
           </tr>
         </tbody>
       </table>
