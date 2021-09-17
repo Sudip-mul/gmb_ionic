@@ -1,0 +1,100 @@
+<ion-content>
+  <!-- Header area -->
+  <div class="main-area">
+    <div class="bg-purple">
+
+      <div class="row paddingfive">
+        <table style="width:100%">
+          <tbody>
+            <tr>
+              <th style="width:10%">
+                <i class="fa fa-angle-double-left fa-lg" [routerLink]="['/home']"></i>
+              </th>
+              <th class="main-title" style="width:60%">GMB Docrank</th>
+              <th style="width:20%">
+                <img class="drimage" [src]="doctorphoto">
+              </th>
+              <th class="dots-icon" style="width:10%">
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+              </th>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Past week area at the top -->
+    <div class="row paddingfive padtop">
+      <table style="width:100%">
+        <tbody>
+          <tr class="for-duration-font">
+            <th class="duration-left" style="width:50%">Past month</th>
+            <th class="duration-right" style="width:50%">{{duration}}</th>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+    <!-- Second box of posts -->
+    <div class="row border-grey section-space">
+      <div [class]="reviewcss.yourcss" (click)=yourpost()>
+        <p class="cardtitle">
+          Posts
+        </p>
+        <p class="cardnum">
+          {{posts.curpost.length}}
+        </p>
+        <p class="cardchange">
+          {{ posts.curpost.length > 0 && posts.oldpost.length > 0 ? ((posts.curpost.length - posts.oldpost.length) /
+          posts.oldpost.length * 100).toString().split(".")[0]: posts.curpost.length > 0 ? "+100" : "-" }} %
+        </p>
+
+      </div>
+      <div [class]="reviewcss.comcss" (click)=compost()>
+        <p class="cardtitle">
+          Competitor posts
+        </p>
+        <p class="cardnum">
+          {{posts.compost}}
+        </p>
+        <p class="cardchange">
+          +{{posts.comoldpost}}%
+        </p>
+      </div>
+
+      <div class="row chips">
+        <span class="chiptext" *ngFor="let item of finalposchips | keyvalue">{{item.key}} - {{item.value}}</span>
+        <span class="chiptext" *ngIf="(finalposchips | json) == ({} | json)">No posts!</span>
+        <!-- <span class="chiptext">And ?</span>
+        <span class="chiptext">Consultation cost</span> -->
+      </div>
+
+
+
+      <!-- Area where post text is there starts here. -->
+
+      <div class="row reviewarea">
+        <div class="postcards" *ngFor="let item of posts.curpost">
+
+
+          <img style="border-radius: 5px;" [src]="item.image != '' ? item.image : '../assets/post_placeholder.jpg'">
+          <div class="col-12 posttitle mt-2 mb-3 text-right" [routerLink]="['/postpage']" [queryParams]="{id: item.id}">
+
+
+            <u>View post</u>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- <app-Morereviews></app-Morereviews> -->
+
+
+
+  </div>
+</ion-content>

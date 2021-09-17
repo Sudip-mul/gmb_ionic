@@ -1,0 +1,153 @@
+<ion-content>
+  <!-- Header area -->
+  <div class="main-area">
+    <div class="bg-purple">
+
+      <div class="row paddingfive">
+        <table style="width:100%">
+          <tbody>
+            <tr>
+              <th style="width:10%">
+                <i class="fa fa-angle-double-left fa-lg" [routerLink]="['/home']"></i>
+              </th>
+              <th class="main-title" style="width:60%">GMB Docrank</th>
+              <th style="width:20%">
+                <img class="drimage" [src]="doctorphoto">
+              </th>
+              <th class="dots-icon" style="width:10%">
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+              </th>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Past week area at the top -->
+    <div class="row paddingfive padtop">
+      <table style="width:100%">
+        <tbody>
+          <tr class="for-duration-font">
+            <th class="duration-left" style="width:50%">Past month</th>
+            <th class="duration-right" style="width:50%">{{duration}}</th>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+    <!-- First box of reviews -->
+    <div class="row border-grey">
+      <div [class]="reviewcss.negcss" (click)=negreviews()>
+        <p class="cardtitle">
+          Negative Reviews
+        </p>
+        <p class="cardnum">
+          {{curreviews.negreviews.length}}
+        </p>
+        <p class="cardchange">
+          {{ oldreviews.negreviews.length > 0 ? (curreviews.negreviews.length - oldreviews.negreviews.length) /
+          oldreviews.negreviews.length * 100 + "%" : curreviews.negreviews.length > 0 ? "+100%" : "-" }}
+        </p>
+
+      </div>
+      <div [class]="reviewcss.neucss" (click)=neureviews()>
+        <p class="cardtitle">
+          Neutral Reviews
+        </p>
+        <p class="cardnum">
+          {{curreviews.neureviews.length}}
+        </p>
+        <p class="cardchange">
+          {{ oldreviews.neureviews.length > 0 ? (curreviews.neureviews.length - oldreviews.neureviews.length) /
+          oldreviews.neureviews.length * 100 + "%" : curreviews.neureviews.length > 0 ? "+100%" : "-" }}
+        </p>
+
+      </div>
+      <div [class]="reviewcss.poscss" (click)=posreviews()>
+        <p class="cardtitle">
+          Positive Reviews
+        </p>
+        <p class="cardnum">
+          {{curreviews.posreviews.length}}
+        </p>
+        <p class="cardchange">
+          {{ oldreviews.posreviews.length > 0 ? ((curreviews.posreviews.length - oldreviews.posreviews.length) /
+          oldreviews.posreviews.length * 100).toString().split(".")[0] : curreviews.posreviews.length > 0 ? "100" : "0"
+          }} %
+        </p>
+
+      </div>
+
+
+      <div class="row chips">
+        <span *ngFor="let item of finalchips | keyvalue: valueOrder; let i = index" class="chiptext">
+          {{item.key}} -
+          {{item.value}}
+        </span>
+        <span class="chiptext" *ngIf="(finalchips | json) == ({} | json)">No text!</span>
+        <!-- <span class="chiptext">And ?</span>
+        <span class="chiptext">Consultation cost</span> -->
+      </div>
+
+
+      <!-- Area where review text is there starts here. -->
+
+      <div class="reviewarea" *ngFor="let item of displayreviews">
+        <div class="row firstarea">
+          <div class="col-8">
+            <img class="drimagewithtext" [src]="item.dispurl">
+            &nbsp;
+            {{item.dispname}}
+          </div>
+          <!-- <div class="col-6"> -->
+
+          <!-- </div> -->
+          <div class="col-4">
+            <i class="fa fa-star selected" *ngFor="let acstar of [].constructor(item.stars.active)"
+              aria-hidden="true"></i>
+            <!-- <i class="fa fa-star selected" aria-hidden="true"></i>
+          <i class="fa fa-star selected" aria-hidden="true"></i>
+          <i class="fa fa-star selected" aria-hidden="true"></i> -->
+            <i class="fa fa-star-o notselected" *ngFor="let instar of [].constructor(item.stars.inactive)"
+              aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-12">
+            {{item.reviewtext}}
+          </div>
+        </div>
+
+      </div>
+      <!-- Review text area ends here. -->
+
+
+      <div class="row icon-btn">
+        <table style="width:100%">
+          <tbody>
+            <tr class="for-duration-font">
+              <th class="bottom-icons" style="width:15%"><a target="_blank"
+                  href="https://wa.me/+919390586972?lang=en&text=I%20want%20to%20know%20more%20about%20reviews.%20Call%20back."><i
+                    class="fa fa-whatsapp"></i></a></th>
+              <th class="bottom-icons" style="width:15%"><a href="tel:9390586972"><i class="fa fa-phone"></i></a></th>
+              <th class="bottom-icons" style="width:15%"><a href="mailto:someone@example.com"><i
+                    class="fa fa-envelope"></i></a></th>
+              <th class="bottom-icons" style="width:15%"></th>
+              <th class="click-text" style="width:40%"></th>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- <app-Morereviews></app-Morereviews> -->
+
+
+
+  </div>
+</ion-content>

@@ -1,0 +1,42 @@
+<ion-content>
+  <!-- Header area -->
+  <div class="main-area">
+    <div class="bg-purple">
+
+      <div class="row paddingfive">
+        <table style="width:100%">
+          <tbody>
+            <tr>
+              <th style="width:10%">
+                <i class="fa fa-angle-double-left fa-lg" [routerLink]="['/posts']"></i>
+              </th>
+              <th class="main-title" style="width:60%">GMB Docrank</th>
+              <th style="width:20%">
+                <img class="drimage" [src]="doctorphoto">
+              </th>
+              <th class="dots-icon" style="width:10%">
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+              </th>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="container contentarea mt-3">
+      <p class="time"><b>Summary: </b>{{displaythis.state}} | {{displaythis.updateTime | date}}</p>
+      <img class="mb-3" [src]="displaythis.media[0].googleUrl">
+      <p class="text">
+        <b>Post text: </b>{{displaythis.summary}}
+      </p>
+      <p class="type">
+        <b>Post type: </b>{{displaythis.topicType}}
+      </p>
+
+    </div>
+
+
+
+  </div>
+</ion-content>

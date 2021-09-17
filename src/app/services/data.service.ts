@@ -35,6 +35,20 @@ export class DataService {
     }));
 }
 
+
+geteverything(userid: any) {
+  let formData  = new HttpParams({
+    fromObject: {
+      "userid": userid
+    }
+  });
+  // console.log(formData)
+ return this.http.post<any>(environment.apiurl + "doctordata.php", (formData), this.requestOptionsnew).pipe(map(res => {
+    return res
+  }));
+}
+
+
   getreviews(function_name: any, email: any, loc: any) {
     let formData  =  {
         "function": function_name,
@@ -47,6 +61,21 @@ export class DataService {
       return res
     }));
 }
+
+getposts(function_name: any, email: any, loc: any) {
+  let formData  =  {
+      "function": function_name,
+      "email": email,
+      "loc": loc
+    }
+
+ return this.http.post<any>(environment.apiurl + "api.php", (formData), this.requestOptions).pipe(map(res => {
+  //  console.log(res)
+    return res
+  }));
+}
+
+
 
 getchips(reviews: any) {
   let formData  =  {

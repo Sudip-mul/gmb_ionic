@@ -37,7 +37,7 @@
 
     <!-- First box of reviews -->
     <div class="row border-grey">
-      <div class="col-4 active">
+      <div [class]="reviewcss.negcss" (click)=negreviews()>
         <p class="cardtitle">
           Negative Reviews
         </p>
@@ -50,7 +50,7 @@
         </p>
 
       </div>
-      <div class="col-4 inactive">
+      <div [class]="reviewcss.neucss" (click)=neureviews()>
         <p class="cardtitle">
           Neutral Reviews
         </p>
@@ -63,7 +63,7 @@
         </p>
 
       </div>
-      <div class="col-4 inactive">
+      <div [class]="reviewcss.poscss" (click)=posreviews()>
         <p class="cardtitle">
           Positive Reviews
         </p>
@@ -71,17 +71,23 @@
           {{curreviews.posreviews.length}}
         </p>
         <p class="cardchange">
-          {{ oldreviews.posreviews.length > 0 ? (curreviews.posreviews.length - oldreviews.posreviews.length) /
-          oldreviews.posreviews.length * 100 + "%" : curreviews.posreviews.length > 0 ? "+100%" : "-" }}
+          {{ oldreviews.posreviews.length > 0 && oldreviews.posreviews.length > 0 ? ((curreviews.posreviews.length -
+          oldreviews.posreviews.length) /
+          oldreviews.posreviews.length * 100).toString().split(".")[0] : curreviews.posreviews.length > 0 ? "100" : "0"
+          }} %
         </p>
 
       </div>
 
+
       <div class="row chips">
-        <span class="chiptext">Timings</span>
-        <span class="chiptext">Ok ok ok</span>
-        <span class="chiptext">And ?</span>
-        <span class="chiptext">Consultation cost</span>
+        <span *ngFor="let item of finalchips | keyvalue: valueOrder; let i = index" class="chiptext">
+          {{item.key}} -
+          {{item.value}}
+        </span>
+        <span class="chiptext" *ngIf="(finalchips | json) == ({} | json)">No text!</span>
+        <!-- <span class="chiptext">And ?</span>
+        <span class="chiptext">Consultation cost</span> -->
       </div>
 
       <div class="row icon-btn">
@@ -95,7 +101,7 @@
               <th class="bottom-icons" style="width:15%"><a href="mailto:someone@example.com"><i
                     class="fa fa-envelope"></i></a></th>
               <th class="bottom-icons" style="width:15%"></th>
-              <th class="click-text" style="width:40%"><u>Analyze reviews</u></th>
+              <th class="click-text" [routerLink]="['/reviews']" style="width:40%"><u>Analyze reviews</u></th>
             </tr>
 
           </tbody>
@@ -109,35 +115,36 @@
 
     <!-- Second box of posts -->
     <div class="row border-grey section-space">
-      <div class="col-6 active">
+      <div [class]="reviewcss.yourcss" (click)=yourpost()>
         <p class="cardtitle">
           Posts
         </p>
         <p class="cardnum">
-          4
+          {{posts.curpost.length}}
         </p>
         <p class="cardchange">
-          +5%
+          {{ posts.curpost.length > 0 && posts.oldpost.length > 0 ? ((posts.curpost.length - posts.oldpost.length) /
+          posts.oldpost.length * 100).toString().split(".")[0]: posts.curpost.length > 0 ? "+100" : "-" }} %
         </p>
 
       </div>
-      <div class="col-6 inactive">
+      <div [class]="reviewcss.comcss" (click)=compost()>
         <p class="cardtitle">
           Competitor posts
         </p>
         <p class="cardnum">
-          18
+          {{posts.compost}}
         </p>
         <p class="cardchange">
-          +10%
+          +{{posts.comoldpost}}%
         </p>
       </div>
 
       <div class="row chips">
-        <span class="chiptext">Timings</span>
-        <span class="chiptext">Ok ok ok</span>
-        <span class="chiptext">And ?</span>
-        <span class="chiptext">Consultation cost</span>
+        <span class="chiptext" *ngFor="let item of finalposchips | keyvalue">{{item.key}} - {{item.value}}</span>
+        <span class="chiptext" *ngIf="(finalposchips | json) == ({} | json)">No posts!</span>
+        <!-- <span class="chiptext">And ?</span>
+        <span class="chiptext">Consultation cost</span> -->
       </div>
 
       <div class="row icon-btn">
@@ -151,7 +158,7 @@
               <th class="bottom-icons" style="width:15%"><a href="mailto:someone@example.com"><i
                     class="fa fa-envelope"></i></a></th>
               <th class="bottom-icons" style="width:15%"></th>
-              <th class="click-text" style="width:40%"><u>Add a post</u></th>
+              <th class="click-text" style="width:40%" [routerLink]="['/posts']"><u>View post</u></th>
             </tr>
 
           </tbody>
@@ -163,19 +170,20 @@
 
     <!-- Third box of calls -->
     <div class="row border-grey section-space">
-      <div class="col-6 active">
+      <div [class]="reviewcss.callscss" (click)=calls()>
         <p class="cardtitle">
           Calls
         </p>
         <p class="cardnum">
-          4
+          {{finalcalls}}
         </p>
         <p class="cardchange">
-          +5%
+          {{ finalcalls > 0 && oldcalls > 0 ? ((finalcalls - oldcalls) / oldcalls * 100).toString().split(".")[0] :
+          finalcalls > 0 ? "+100" : "-" }} %
         </p>
 
       </div>
-      <div class="col-6 inactive">
+      <div [class]="reviewcss.locationcss" (click)=location()>
         <p class="cardtitle">
           Location searches
         </p>
@@ -204,7 +212,7 @@
               <th class="bottom-icons" style="width:15%"><a href="mailto:someone@example.com"><i
                     class="fa fa-envelope"></i></a></th>
               <th class="bottom-icons" style="width:15%"></th>
-              <th class="click-text" style="width:40%"><u>Boost calls</u></th>
+              <th class="click-text" style="width:40%"><u><a href="tel:9390586972">Boost calls</a></u></th>
             </tr>
 
           </tbody>
