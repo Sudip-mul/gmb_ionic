@@ -1,4 +1,5 @@
 import { KeyValue } from '@angular/common';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
@@ -17,8 +18,12 @@ export class HomePage implements OnInit {
 // for everything
 alldata: any
 cleanoutput: any
+cleansearchouput: any
 finalcalls: number = 0
 oldcalls: number = 0
+finalsearch: number = 0
+oldsearch: number=0
+
 
 // for getting duration at top
    duration: any = '';
@@ -62,6 +67,7 @@ oldcalls: number = 0
    postsoutput: any = {}
 
    callsoutput: any = {}
+   searchoutput: any = {}
 
   constructor(private route: ActivatedRoute, private router: Router, private data: DataService) {
 
@@ -251,6 +257,66 @@ oldcalls: number = 0
          //  });
          }
 
+   cleansearchcount(response: any){
+      var p: any;
+      var q: any;
+      var r: any;
+      var dict = [];
+                for (var i = 0; i < response['locationMetrics'].length; i++) {
+                    for (var j = 0; j < response['locationMetrics'][i]['metricValues'].length; j++) {
+                        p = response['locationMetrics'][i]['metricValues'][j]['metric']
+                        // console.log(response['locationMetrics'][0]['metricValues'][0]['metric'])
+                        q = response['locationMetrics'][i]['metricValues'][j]['totalValue']['value']
+                        r = response['locationMetrics'][i]['metricValues'][j]['totalValue']['timeDimension']['timeRange']['startTime'].split('T')[0]
+                        // console.log(r)
+                        // console.log(response['locationMetrics'][0]['metricValues'][0]['totalValue']['value'])
+                        if (p != null) {
+                            dict.push({
+                                'name': p,
+                                'data': parseInt(q)
+                            });
+                        } else {
+                            p = 'none'
+                            dict.push({
+                                'name': p,
+                                'data': q.split(" ")
+                            })
+                        }
+                        var dict1 = [];
+                        var dict2 = [];
+                        var dict3 = [];
+                        var dict4 = [];
+                        Object.keys(dict).forEach(function(a) {
+                            if (dict[a].name == 'ACTIONS_WEBSITE' || dict[a].name == 'ACTIONS_PHONE' || dict[a].name == 'ACTIONS_DRIVING_DIRECTIONS') {
+                                dict1.push({
+                                    'name': dict[a].name,
+                                    'data': dict[a].data
+                                })
+                            } else if (dict[a].name == 'VIEWS_MAPS' || dict[a].name == 'VIEWS_SEARCH') {
+                                dict2.push({
+                                    'name': dict[a].name,
+                                    'data': dict[a].data
+                                })
+                            } else if (dict[a].name == 'PHOTOS_VIEWS_MERCHANT' || dict[a].name == 'PHOTOS_VIEWS_CUSTOMERS') {
+                                dict3.push({
+                                    'name': dict[a].name,
+                                    'data': dict[a].data
+                                })
+                            } else if (dict[a].name == 'QUERIES_DIRECT' || dict[a].name == 'QUERIES_INDIRECT' || dict[a].name == 'QUERIES_CHAIN') {
+                                dict4.push({
+                                    'name': dict[a].name,
+                                    'data': dict[a].data
+                                })
+                            }
+                            // console.log(x);
+                            // console.log(y);
+                        })
+                    }
+                  }
+
+                  return dict4;
+   }      
+
    cleancallcount(response:any){
       let p: any
       let q: any
@@ -335,7 +401,35 @@ oldcalls: number = 0
 
 }
 
+getsearches(){
+   let searchres: any;
 
+   searchres = JSON.parse(this.alldata['search_previous_json'])
+         this.cleansearchouput = this.cleansearchcount(searchres)
+         console.log(this.cleansearchouput)
+               
+               for (let i= 0; i< this.cleansearchouput.length; i++){
+                  console.log(this.cleansearchouput[i]['data'])
+                  this.oldsearch = this.oldsearch + this.cleansearchouput[i]['data']
+               }
+
+
+         searchres = JSON.parse(this.alldata['search_json'])
+         console.log("This is search data")
+         console.log(searchres)
+         this.cleansearchouput = this.cleansearchcount(searchres)
+         console.log(this.cleansearchouput)
+               
+               for (let i= 0; i< this.cleansearchouput.length; i++){
+                  console.log(this.cleansearchouput[i]['data'])
+                  this.finalsearch = this.finalsearch + this.cleansearchouput[i]['data']
+               }
+
+
+
+
+            return searchres 
+}
    getcalls(){
          let callres: any
 
@@ -373,6 +467,7 @@ oldcalls: number = 0
    getdetail(useridoutput: any){
       this.reviewsoutput = this.getreviews()
       this.callsoutput = this.getcalls()
+      this.searchoutput = this.getsearches()
       console.log(this.callsoutput)
       this.postsoutput = this.getposts()
       this.getmychips()

@@ -188,10 +188,11 @@
           Location searches
         </p>
         <p class="cardnum">
-          18
+          {{finalsearch}}
         </p>
         <p class="cardchange">
-          +10%
+          {{ finalsearch > 0 && oldsearch > 0 ? ((finalsearch - oldsearch) / oldsearch * 100).toString().split(".")[0] :
+          finalsearch > 0 ? "+100" : "-" }} %
         </p>
       </div>
 
