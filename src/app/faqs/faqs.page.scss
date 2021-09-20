@@ -1,0 +1,234 @@
+.bg-purple{
+    background-color: #7C3A85;
+    color: white;
+    position: sticky;
+    top: 0%;
+    z-index: 999;
+    box-shadow: 2px 5px 10px grey;
+  }
+  
+  .paddingfive{
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+  
+  .lefttext{
+    padding-top: 3%;
+    padding-bottom: 3% !important;
+    float: left;  
+    font-weight: 500;
+    font-size: 20px;
+  }
+  
+  .righttext{
+    padding-top: 3%;
+    padding-bottom: 3% !important;
+    float: right;
+    width: 30%; 
+  }
+  
+  .drimage{
+    max-width: 100%;
+    border: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    margin-top: 14%;
+    margin-bottom: 14%;
+    float: right;
+  }
+  
+  .dots-icon{
+    font-size: 24px;
+  }
+  
+  .main-title{
+    font-size: 21px;
+    text-align: left;
+  }
+  
+  .for-duration-font{
+    color: #636363;
+    font-size: 15px;
+  }
+  
+  .duration-left{
+    text-align: left;
+    font-weight: 400;
+  }
+  
+  .duration-right{
+    text-align: right;
+    font-weight: 400;
+  }
+  
+  .fa-ellipsis-v{
+    float:right;
+  }
+  
+  .padtop{
+    padding-top: 3%;
+    padding-bottom: 3%;
+  }
+  
+  
+  .border-grey{
+    border: #F5F5F5 8px solid;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+  
+  .cardtitle, .cardnum, .cardchange{
+    margin-bottom: 0px !important;
+  }
+  
+  .cardtitle{
+    font-size: 10px;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    font-weight: 300 !important;
+  }
+  
+  .cardchange{
+    font-size: 10px;
+    padding-bottom: 2px;
+  }
+  
+  
+  .cardnum{
+    font-size: 35px;
+  }
+  
+  .active{
+    border: 1px solid #7C3A85;
+    background-color: #7C3A85;
+    color: white;
+  }
+  
+  .inactive{
+    box-shadow: 0px 12px 13px #00000029 inset;
+    border: 1px solid #00000029;
+  }
+  
+  
+  .chips{
+    margin-top: 5%;
+    margin-bottom: 0%;
+    margin-left: 3%;
+    margin-right: 3%;
+    width: 100%;
+  }
+
+  .reviewarea{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 3%;
+    margin-right: 3%;
+    width: 100%;
+    border-bottom: 1px solid #ececec;
+  }
+
+  
+  .chiptext{
+    border: 2px solid #7C3A85;
+    border-radius: 78px;
+    font-size: 12px;
+    padding: 2% 5%;
+    margin-right: 5%;
+    margin-bottom: 3%;
+  }
+  
+  .bottom-icons{
+    font-size: 25px;
+    color:#7C3A85;
+    a{
+      color:#7C3A85;
+    }
+  }
+  
+  .click-text{
+    color: #7C3A85;
+    font-weight: 500 !important;
+  }
+  .icon-btn{
+    margin-top: 4%;
+    margin-bottom: 5%;
+    margin-left: 3%;
+    margin-right: 3%;
+    width: 100%;
+  }
+  
+  .section-space{
+    margin-top: 1%;
+  }
+  
+  .sticky-footer{
+    text-align: center;
+    color: white !important;
+    background-color: #7C3A85;
+    font-size: 28px;
+    position: sticky;
+    bottom: 0%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  
+    a{
+      color: white !important;
+      background-color: #7C3A85;
+    
+    }
+  }
+  
+  text.highcharts-credits {
+    display: none !important;
+  }
+  
+  // .padarea{
+  //   margin: 2%;
+  // }
+  
+
+  .selected{
+      color: rgba(165, 168, 0, 0.658);
+  }
+
+  .notselected{
+      color: rgba(165, 168, 0, 0.658);
+  }
+
+  .posttitle{
+font-size: 17px;
+font-weight: 600;
+  }
+
+  .postcat{
+    font-size: 15px;
+    margin-bottom: 1%;
+      }
+    .posttext{
+      font-size: 17px;
+        }
+
+.text{
+  line-height: 32px;
+}       
+
+.pagetitle{
+    font-weight: 600;
+    font-size: 21px;
+}
+
+.answer{
+    margin-bottom: 30px;
+  }
+  
+
+  // desktop css starts here
+  
+  @media only screen and (min-width: 992px) {
+    .drimage{
+      margin-top: 3%;
+    }
+  
+  }
+  

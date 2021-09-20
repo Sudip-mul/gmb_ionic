@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "Google DocRank",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

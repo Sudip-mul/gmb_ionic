@@ -16,7 +16,7 @@ alldata: any
 duration: any = '';
 
 // for getting user information
-   doctorphoto: any = '../assets/doctor_pic.png';
+   doctorphoto: any = './assets/doctor_pic.png';
    userid: any;
    useridoutput: any;
    userinfo: any;
@@ -37,6 +37,8 @@ duration: any = '';
    finalposchips: any = 'No reviews'
 
 
+   usethispost: any
+
 
    allreviews: any = [];
 
@@ -49,8 +51,9 @@ duration: any = '';
    comchips: any
 
 // For posts
-   posts: any = {"curpost": [], "oldpost": [], "compost": 18, "comoldpost": 12}
+   posts: any = {"curpost": [], "oldpost": [], "compost": [], "comoldpost": []}
    postsoutput: any = {}
+   finalposts: any
 
   constructor(private route: ActivatedRoute, private router: Router, private data: DataService) {
 
@@ -67,54 +70,6 @@ duration: any = '';
    this.mychips = JSON.parse(this.mychips)
 
   }
-
-  highcharts = Highcharts;
-   chartOptions = {   
-      chart: {
-         type: 'column'
-      },
-      title: {
-         text: ''
-      },
-      subtitle:{
-         text: '' 
-      },
-      xAxis:{
-         categories: ['M','T','W','T','F','S','S'],
-         crosshair: true        
-      },     
-      yAxis : {
-         stackLabels: {
-            style: {
-                color: '#000',
-                fontWeight: 'bold'
-            },
-            enabled: true,
-            verticalAlign: 'top'
-        },
-         min: 0,
-         title: {
-            text: ''         
-         }      
-      },
-      tooltip : {
-         headerFormat: '<span style = "font-size:10px">{point.key}</span><table>',
-         pointFormat: '<tr><td style = "color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style = "padding:0"><b>{point.y:.0f}</b></td></tr>', footerFormat: '</table>', shared: true, useHTML: true
-      },
-      plotOptions : {
-         column: {
-            pointPadding: 0.2,
-            borderWidth: 0
-         }
-      },
-      series: [{
-         showInLegend: false,
-         name: '',
-         data: [10, 20, 30, 32, 28, 25, 20],
-         color: '#7C3A85'
-      }]
-   };
 
    getthedate(){
       let days = 30; // Days you want to subtract
@@ -138,14 +93,11 @@ duration: any = '';
 
     getmychips(){
       this.curreviews['compost'] = []
-      console.log("Check this output")
-      console.log(this.curreviews)
          this.negchips = this.mychips['negchips']
          this.poschips = this.mychips['poschips']
          this.neuchips = this.mychips['neuchips']
          this.yourchips = this.mychips['yourchips']
          this.comchips = this.mychips['comchips']
-         console.log(this.mychips)
          localStorage.setItem('chips', JSON.stringify(this.mychips))
          this.finalchips = this.mychips['negchips']
 
@@ -154,8 +106,6 @@ duration: any = '';
         //    console.log(element)
         // });
 
-      console.log("Check here")
-          console.log(this.mychips['poschips'])
          this.finalposchips = this.mychips['yourchips']
 
    }
@@ -166,11 +116,7 @@ duration: any = '';
       //     .getposts(function_name, email, loc).subscribe((postres) => {
          let postres: any
          postres = JSON.parse(this.alldata['post_json'])
-             console.log("This is posts data")
-            console.log(postres)
 
-
-            console.log(postres['localPosts'].length)
             for (let i = 0; i < postres['localPosts'].length; i++){
                if (this.getthedate()['olddate'].toISOString() < postres['localPosts'][i]['updateTime']){
                     this.posts['curpost'].push({"id": postres['localPosts'][i]['name'], "image": postres['localPosts'][i]['media'][0]['googleUrl']})
@@ -179,8 +125,25 @@ duration: any = '';
                     this.posts['oldpost'].push({"id": postres['localPosts'][i]['name'],  "image": postres['localPosts'][i]['media'][0]['googleUrl']})
               }
            }
-           console.log("Being displayed")
-           console.log(this.posts)
+
+
+
+           postres = JSON.parse(this.alldata['comppost_json'])
+
+
+           for (let i = 0; i < postres['localPosts'].length; i++){
+            if (this.getthedate()['olddate'].toISOString() < postres['localPosts'][i]['updateTime']){
+                 this.posts['compost'].push({"id": postres['localPosts'][i]['name'], "image": postres['localPosts'][i]['media'][0]['googleUrl']})
+            }
+            else if (this.getthedate()['previous'].toISOString() < postres['localPosts'][i]['updateTime']){
+                 this.posts['comoldpost'].push({"id": postres['localPosts'][i]['name'],  "image": postres['localPosts'][i]['media'][0]['googleUrl']})
+           }
+        }
+           this.curreviews['compost'] = this.posts['compost']
+
+
+
+
            this.curreviews['yourpost'] = this.posts['curpost']
             return this.posts
 
@@ -232,38 +195,19 @@ duration: any = '';
 
       this.getuserinfo(this.userid["id"])
 
+      this.yourpost()
+
       }
 
-
-      negreviews(){
-         // console.log("Neg reviews clicked")
-         this.reviewcss['negcss'] = 'col-4 active'
-         this.reviewcss['poscss'] = 'col-4 inactive'
-         this.reviewcss['neucss'] = 'col-4 inactive'
-         this.finalchips = this.mychips['negchips']
-      }
-   
-      neureviews(){
-         // console.log("Neu reviews clicked")
-         this.reviewcss['negcss'] = 'col-4 inactive'
-         this.reviewcss['poscss'] = 'col-4 inactive'
-         this.reviewcss['neucss'] = 'col-4 active'
-         this.finalchips = this.mychips['neuchips']
-      }
-   
-      posreviews(){
-         // console.log("Pos reviews clicked")
-         this.reviewcss['negcss'] = 'col-4 inactive'
-         this.reviewcss['poscss'] = 'col-4 active'
-         this.reviewcss['neucss'] = 'col-4 inactive'
-         this.finalchips = this.mychips['poschips']
-      }
 
       yourpost(){
          // console.log("Neu reviews clicked")
          this.reviewcss['yourcss'] = 'col-6 active'
          this.reviewcss['comcss'] = 'col-6 inactive'
          this.finalposchips = this.mychips['yourchips']
+         this.finalposts = this.posts.curpost
+         console.log(this.finalposts)
+         this.usethispost =  'post_json'
       }
    
       compost(){
@@ -271,6 +215,9 @@ duration: any = '';
          this.reviewcss['yourcss'] = 'col-6 inactive'
          this.reviewcss['comcss'] = 'col-6 active'
          this.finalposchips = this.mychips['comchips']
+         this.finalposts = this.posts.compost
+         console.log(this.finalposts)
+         this.usethispost =  'comppost_json'         
       }
 
 

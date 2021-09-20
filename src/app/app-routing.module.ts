@@ -31,6 +31,10 @@ const routes: Routes = [
     path: 'postpage',
     loadChildren: () => import('./postpage/postpage.module').then( m => m.PostpagePageModule)
   },
+  {
+    path: 'faqs',
+    loadChildren: () => import('./faqs/faqs.module').then( m => m.FaqsPageModule)
+  },
 
 
 ];

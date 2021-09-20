@@ -22,7 +22,7 @@ duration: any = '';
 userdata: any;
 
 // for getting user information
-   doctorphoto: any = '../assets/doctor_pic.png';
+   doctorphoto: any = './assets/doctor_pic.png';
    userid: any;
    useridoutput: any;
    userinfo: any;
@@ -194,6 +194,7 @@ userdata: any;
          this.reviewcss['poscss'] = 'col-4 inactive'
          this.reviewcss['neucss'] = 'col-4 inactive'
          this.finalchips = this.mychips['negchips']
+         // console.log(this.displayreviews)
          this.displayreviews = this.curreviews['negreviews']
       }
    

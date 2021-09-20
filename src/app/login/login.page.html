@@ -1,6 +1,26 @@
-<ion-content>
-  <div class="ion-text-center">
-    <h3>DocRank GMB</h3>
-    The user is not logged, please take the link from Multiplier support team to login!
+<ion-content class="forbackground">
+
+  <div class="fix-size">
+    <img src="./assets/app-background.png" />
+  </div>
+
+
+  <div class="ion-text-center main-area">
+    <!-- <h2>Welcome to DocRank GMB</h2>
+    The user is not logged, please take the link from Multiplier support team to login! -->
+
+
+    <div class="content-section">
+      <input type="text" class="text-line text-center" [(ngModel)]="code" placeholder="Enter code">
+      <br>
+      <ion-text color="danger" *ngIf="err">{{errmsg}}</ion-text>
+      <br>
+      <!-- <ion-input placeholder="Enter Input"></ion-input> -->
+      <button class="subbtn" (click)="sendCode()">Submit</button>
+
+    </div>
+
+
+
   </div>
 </ion-content>

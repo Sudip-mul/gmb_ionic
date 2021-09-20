@@ -128,6 +128,12 @@
     border-bottom: 1px solid #ececec;
   }
 
+  .postreviewarea{
+  @extend .reviewarea;
+    justify-content: center;
+
+  }
+
   
   .chiptext{
     border: 2px solid #7C3A85;
@@ -207,8 +213,7 @@ font-weight: 600;
       }
     .posttext{
       font-size: 17px;
-        }
-              
+        }              
 
   // desktop css starts here
   

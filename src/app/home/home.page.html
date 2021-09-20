@@ -11,8 +11,9 @@
               <th style="width:20%">
                 <img class="drimage" [src]="doctorphoto">
               </th>
-              <th class="dots-icon" style="width:10%">
-                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+              <th class="dots-icon text-right" style="width:10%" (click)="logout()">
+                <i class="fa fa-power-off" aria-hidden="true"></i>
+                <!-- <i class="fa fa-ellipsis-v" aria-hidden="true"></i> -->
               </th>
             </tr>
 
@@ -45,7 +46,7 @@
           {{curreviews.negreviews.length}}
         </p>
         <p class="cardchange">
-          {{ oldreviews.negreviews.length > 0 ? (curreviews.negreviews.length - oldreviews.negreviews.length) /
+          MoM : {{ oldreviews.negreviews.length > 0 ? (curreviews.negreviews.length - oldreviews.negreviews.length) /
           oldreviews.negreviews.length * 100 + "%" : curreviews.negreviews.length > 0 ? "+100%" : "-" }}
         </p>
 
@@ -58,7 +59,7 @@
           {{curreviews.neureviews.length}}
         </p>
         <p class="cardchange">
-          {{ oldreviews.neureviews.length > 0 ? (curreviews.neureviews.length - oldreviews.neureviews.length) /
+          MoM : {{ oldreviews.neureviews.length > 0 ? (curreviews.neureviews.length - oldreviews.neureviews.length) /
           oldreviews.neureviews.length * 100 + "%" : curreviews.neureviews.length > 0 ? "+100%" : "-" }}
         </p>
 
@@ -71,7 +72,8 @@
           {{curreviews.posreviews.length}}
         </p>
         <p class="cardchange">
-          {{ oldreviews.posreviews.length > 0 && oldreviews.posreviews.length > 0 ? ((curreviews.posreviews.length -
+          MoM : {{ oldreviews.posreviews.length > 0 && oldreviews.posreviews.length > 0 ? ((curreviews.posreviews.length
+          -
           oldreviews.posreviews.length) /
           oldreviews.posreviews.length * 100).toString().split(".")[0] : curreviews.posreviews.length > 0 ? "100" : "0"
           }} %
@@ -117,26 +119,30 @@
     <div class="row border-grey section-space">
       <div [class]="reviewcss.yourcss" (click)=yourpost()>
         <p class="cardtitle">
-          Posts
+          Posts by You
         </p>
         <p class="cardnum">
           {{posts.curpost.length}}
         </p>
         <p class="cardchange">
-          {{ posts.curpost.length > 0 && posts.oldpost.length > 0 ? ((posts.curpost.length - posts.oldpost.length) /
+          MoM : {{ posts.curpost.length > 0 && posts.oldpost.length > 0 ? ((posts.curpost.length - posts.oldpost.length)
+          /
           posts.oldpost.length * 100).toString().split(".")[0]: posts.curpost.length > 0 ? "+100" : "-" }} %
         </p>
 
       </div>
       <div [class]="reviewcss.comcss" (click)=compost()>
         <p class="cardtitle">
-          Competitor posts
+          Posts by Competitors
         </p>
         <p class="cardnum">
-          {{posts.compost}}
+          {{posts.compost.length}}
         </p>
         <p class="cardchange">
-          +{{posts.comoldpost}}%
+          MoM : {{ posts.compost.length > 0 && posts.comoldpost.length > 0 ? ((posts.compost.length -
+          posts.comoldpost.length)
+          /
+          posts.comoldpost.length * 100).toString().split(".")[0]: posts.compost.length > 0 ? "+100" : "-" }} %
         </p>
       </div>
 
@@ -178,28 +184,36 @@
           {{finalcalls}}
         </p>
         <p class="cardchange">
-          {{ finalcalls > 0 && oldcalls > 0 ? ((finalcalls - oldcalls) / oldcalls * 100).toString().split(".")[0] :
+          MoM : {{ finalcalls > 0 && oldcalls > 0 ? ((finalcalls - oldcalls) / oldcalls * 100).toString().split(".")[0]
+          :
           finalcalls > 0 ? "+100" : "-" }} %
         </p>
 
       </div>
       <div [class]="reviewcss.locationcss" (click)=location()>
         <p class="cardtitle">
-          Location searches
+          Relevant Searches Near You
         </p>
         <p class="cardnum">
           {{finalsearch}}
         </p>
         <p class="cardchange">
-          {{ finalsearch > 0 && oldsearch > 0 ? ((finalsearch - oldsearch) / oldsearch * 100).toString().split(".")[0] :
+          MoM : {{ finalsearch > 0 && oldsearch > 0 ? ((finalsearch - oldsearch) / oldsearch *
+          100).toString().split(".")[0] :
           finalsearch > 0 ? "+100" : "-" }} %
         </p>
       </div>
 
       <div class="row chips">
-        <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions"
+        <div id="barChart" style="display: flex;"></div>
+        <!-- <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions"
           style="width: 90%; height: 150px; display: block;">
-        </highcharts-chart>
+        </highcharts-chart> -->
+      </div>
+      <div class="row chips">
+
+        <div [chart]="chart"></div>
+
       </div>
 
       <div class="row icon-btn">
@@ -230,7 +244,9 @@
                 href="https://wa.me/+919390586972?lang=en&text=I%20want%20to%20improve%20my%20digital%20presence.%20Call%20back."><i
                   class="fa fa-whatsapp"></i></a></th>
             <th style="width:33%"><a href="tel:9390586972"><i class="fa fa-phone"></i></a></th>
-            <th style="width:33%"><a href="mailto:someone@example.com"><i class="fa fa-envelope"></i></a></th>
+            <th style="width:33%" [routerLink]="['/faqs']">
+              <i class="fa fa-question-circle"></i>
+            </th>
           </tr>
         </tbody>
       </table>

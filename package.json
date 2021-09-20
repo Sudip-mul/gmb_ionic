@@ -1,5 +1,5 @@
 {
-  "name": "gmb_app",
+  "name": "Google DocRank",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
@@ -26,6 +26,7 @@
     "@capacitor/keyboard": "1.0.3",
     "@capacitor/status-bar": "1.0.3",
     "@ionic/angular": "^5.5.2",
+    "angular-highcharts": "^12.0.0",
     "highcharts": "^9.2.2",
     "highcharts-angular": "^2.10.0",
     "rxjs": "~6.6.0",
@@ -49,6 +50,7 @@
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "4.16.1",
     "@typescript-eslint/parser": "4.16.1",
+    "cordova-res": "^0.15.3",
     "eslint": "^7.6.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsdoc": "30.7.6",

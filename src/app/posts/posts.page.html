@@ -10,13 +10,13 @@
               <th style="width:10%">
                 <i class="fa fa-angle-double-left fa-lg" [routerLink]="['/home']"></i>
               </th>
-              <th class="main-title" style="width:60%">GMB Docrank</th>
+              <th class="main-title" style="width:80%">GMB Docrank</th>
               <th style="width:20%">
                 <img class="drimage" [src]="doctorphoto">
               </th>
-              <th class="dots-icon" style="width:10%">
+              <!-- <th class="dots-icon" style="width:10%">
                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-              </th>
+              </th> -->
             </tr>
 
           </tbody>
@@ -42,7 +42,7 @@
     <div class="row border-grey section-space">
       <div [class]="reviewcss.yourcss" (click)=yourpost()>
         <p class="cardtitle">
-          Posts
+          Posts by You
         </p>
         <p class="cardnum">
           {{posts.curpost.length}}
@@ -55,13 +55,15 @@
       </div>
       <div [class]="reviewcss.comcss" (click)=compost()>
         <p class="cardtitle">
-          Competitor posts
+          Posts by Competitors
         </p>
         <p class="cardnum">
-          {{posts.compost}}
+          {{posts.compost.length}}
         </p>
         <p class="cardchange">
-          +{{posts.comoldpost}}%
+          {{ posts.compost.length > 0 && posts.comoldpost.length > 0 ? ((posts.compost.length - posts.comoldpost.length)
+          /
+          posts.comoldpost.length * 100).toString().split(".")[0]: posts.compost.length > 0 ? "+100" : "-" }} %
         </p>
       </div>
 
@@ -76,12 +78,14 @@
 
       <!-- Area where post text is there starts here. -->
 
-      <div class="row reviewarea">
-        <div class="postcards" *ngFor="let item of posts.curpost">
+      <div class="row postreviewarea">
+        <div class="postcards mb-3" *ngFor="let item of finalposts">
 
 
-          <img style="border-radius: 5px;" [src]="item.image != '' ? item.image : '../assets/post_placeholder.jpg'">
-          <div class="col-12 posttitle mt-2 mb-3 text-right" [routerLink]="['/postpage']" [queryParams]="{id: item.id}">
+          <img style="border-radius: 5px; width: 337px;"
+            [src]="item.image != '' ? item.image : './assets/post_placeholder.jpg'">
+          <div class="col-12 posttitle mt-2 mb-3 text-right" [routerLink]="['/postpage']"
+            [queryParams]="{id: item.id, file: usethispost}">
 
 
             <u>View post</u>

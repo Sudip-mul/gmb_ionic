@@ -1,0 +1,124 @@
+img {
+    width: 100%;
+    height: 100%;
+  }
+  ::placeholder { 
+                  
+    /* Firefox, Chrome, Opera */
+    text-align: center;
+}
+  .subbtn{
+    background-color: #580979;
+    padding: 10px;
+    cursor: pointer;
+    color: white !important;
+    border-radius: 20%;
+  }
+  
+  .content-section {
+    position: absolute;
+    top:65%;
+    // padding-left: 5%;
+    width: 100%;
+    text-align: center;
+  }
+  .text-line {
+    background-color: transparent;
+    color: #5a5a5b;
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid #5a5a5b 1px;
+    padding: 3px 10px;
+    width: 32%;
+}
+  .heading-text {
+    font-size: 17px;
+    font-weight: 600;
+    font-family: open sans;
+  }
+  
+  .left-text {
+    font-size: 17px;
+    font-weight: 600;
+    font-family: open sans;
+    padding-left: 5%;
+  }
+  
+  .right-text {
+    justify-content: center;
+    color: #7C3A85;
+    font-family: open sans;
+    font-weight: 600;
+  }
+  
+  ion-row {
+    width: 97%;
+    align-items: center;
+  }
+  
+  .main-box {
+    border: 1px solid white;
+    padding: 4px 1px 1px 1px;
+    background: white;
+    border-radius: 5px;
+    margin-bottom: 5%;
+  }
+  
+  .heading-right {
+    color: #999999;
+  }
+  
+  .title-area {
+    margin-bottom: 6%;
+  }
+  
+  .grey-text {
+    color: #999999;
+    font-size: 12px;
+    margin-top: 7px;
+  }
+  
+  .section-2,.section-1 {
+    margin-top: 4%;
+   
+  }
+  .scrolable-div{
+    height: 300px;
+    overflow-y: scroll;
+    width: 100%;
+  }
+  
+  .pharma-row {
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
+  
+
+  .main-area{
+    padding: 5px;
+  }
+
+
+
+//   ion-content{
+//     --background: #fff url('../../assets/app-background.png') no-repeat center center / cover;
+//     --background-position: center center;
+//     --background-repeat: no-repeat;
+//     --background-size: cover;
+//     --width: 100%;
+//     --height: auto;
+
+// }
+
+
+.fix-size {
+  position: relative;
+  text-align: center;
+  color: white;
+  width: 100%;
+  height: 100%;
+}
+  
