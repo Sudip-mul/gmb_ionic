@@ -44,7 +44,8 @@
 }
 
 .redtext{
-  color: #ff5050;
+  // color: #ff5050;
+  color: #fdfcfd;
 }
 
 
@@ -53,6 +54,12 @@
   border: 1px solid #fdfcfd;
   border-radius: 5px;
   background-color: #fdfcfd;
+}
+.reportareared{
+  text-align: center;
+  border: 1px solid #fdfcfd;
+  border-radius: 5px;
+  background-color: #7c3a85;
 }
 
 .dots-icon{
@@ -200,6 +207,11 @@ text.highcharts-credits {
 // .padarea{
 //   margin: 2%;
 // }
+
+
+
+
+
 
 
 // desktop css starts here

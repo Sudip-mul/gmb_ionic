@@ -7,14 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { MonthlyreportPageRoutingModule } from './monthlyreport-routing.module';
 
 import { MonthlyreportPage } from './monthlyreport.page';
-import { ChartModule } from 'angular-highcharts';
+// import { ChartModule } from 'angular-highcharts';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MonthlyreportPageRoutingModule, ChartModule
+    MonthlyreportPageRoutingModule
   ],
   declarations: [MonthlyreportPage]
 })

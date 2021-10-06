@@ -92,7 +92,7 @@ export class HomePage implements OnInit {
             
             let counter = 0
             interval(1200).subscribe(() => {
-                let colors = ['reportarea purpletext mb-0', 'reportarea redtext mb-0']
+                let colors = ['reportarea purpletext mb-0', 'reportareared redtext mb-0']
                 if (counter == 20){
                     counter = 0
                 }
