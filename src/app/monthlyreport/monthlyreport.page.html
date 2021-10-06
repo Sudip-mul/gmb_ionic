@@ -1,0 +1,365 @@
+<ion-content>
+  <!-- Header area -->
+  <div class="main-area">
+    <div class="bg-purple">
+
+      <div class="row paddingfive">
+        <table style="width:100%">
+          <tbody>
+            <tr>
+              <th style="width:10%">
+                <i class="fa fa-angle-double-left fa-lg" [routerLink]="['/home']"></i>
+              </th>
+              <th style="width:80%">
+                <p class="main-title mt-2 mb-0">GMB Docrank</p>
+                <p class="sub-title mt-0 mb-2">{{docname}}</p>
+              </th>
+              <!-- <th style="width:20%">
+
+                <img class="drimage" [src]="doctorphoto">
+              </th> -->
+              <th class="dots-icon text-right" style="width:10%" (click)="logout()">
+                <i class="fa fa-power-off" aria-hidden="true"></i>
+                <!-- <i class="fa fa-ellipsis-v" aria-hidden="true"></i> -->
+              </th>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Past week area at the top -->
+    <div class="row paddingfive padtop">
+      <table style="width:100%">
+        <tbody>
+          <tr class="for-duration-font">
+            <th class="duration-left" style="width:50%">Monthly report</th>
+            <th class="duration-right" style="width:50%">{{duration}}</th>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+    <!-- First box of reviews -->
+    <div class="row border-grey">
+      <div [class]="mainjson.procss" (click)=profile()>
+        <p class="cardtitle">
+          GMB Profile
+        </p>
+        <p class="cardnum">
+          {{alldata.gmb_profile_status}}
+        </p>
+        <p class="cardchange">
+        </p>
+
+      </div>
+      <div [class]="mainjson.localcss" (click)=local()>
+        <p class="cardtitle">
+          Rank in local area
+        </p>
+        <p class="cardnum">
+          {{alldata.local_area_rank}}
+        </p>
+        <p [class]="dispflag.local" style="color: #fd9292">
+          Not found in local area
+        </p>
+
+      </div>
+      <div [class]="mainjson.citycss" (click)=city()>
+        <p class="cardtitle">
+          Rank in city
+        </p>
+        <p class="cardnum">
+          {{alldata.city_rank}}
+        </p>
+        <p [class]="dispflag.city" style="color: #fd9292">
+          Not found in city
+        </p>
+
+      </div>
+
+
+      <div class="row chips">
+        <img class="doc-pro-image" [src]="useimage">
+        <!-- <img class="doc-pro-image"
+          src="https://gmbapi.multipliersolutions.in/static/2856081385cb6f72a90d033b82f9e320.png"> -->
+
+
+
+      </div>
+
+      <div class="row icon-btn">
+      </div>
+
+    </div>
+
+    <!-- <app-Morereviews></app-Morereviews> -->
+
+
+    <!-- Second box of posts -->
+    <div class="row border-grey section-space">
+      <div [class]="mainjson.actionscss" (click)=actions()>
+        <p class="cardtitle">
+          Actions
+        </p>
+        <p class="cardnum">
+          {{finalsearch.Actions}}
+        </p>
+        <p class="cardchange">
+          MoM : {{ finalsearch.Actions > 0 && oldsearch.Actions > 0 ? ((finalsearch.Actions - oldsearch.Actions) /
+          oldsearch.Actions *
+          100).toString().split(".")[0] :
+          finalsearch.Actions > 0 ? "+100" : "-" }} %
+        </p>
+
+      </div>
+      <div [class]="mainjson.viewscss" (click)=views()>
+        <p class="cardtitle">
+          Views
+        </p>
+        <p class="cardnum">
+          {{finalsearch.Views}}
+        </p>
+        <p class="cardchange">
+          MoM : {{ finalsearch.Views > 0 && oldsearch.Views > 0 ? ((finalsearch.Views - oldsearch.Views) /
+          oldsearch.Views *
+          100).toString().split(".")[0] :
+          finalsearch.Views > 0 ? "+100" : "-" }} %
+        </p>
+
+      </div>
+      <div [class]="mainjson.photoviewscss" (click)=photoviews()>
+        <p class="cardtitle">
+          Photo views
+        </p>
+        <p class="cardnum">
+          {{finalsearch.Photoviews}}
+        </p>
+        <p class="cardchange">
+          MoM : {{ finalsearch.Photoviews > 0 && oldsearch.Photoviews > 0 ? ((finalsearch.Photoviews -
+          oldsearch.Photoviews) /
+          oldsearch.Photoviews *
+          100).toString().split(".")[0] :
+          finalsearch.Photoviews > 0 ? "+100" : "-" }} %
+        </p>
+
+      </div>
+
+      <div class="row chips">
+        <div id="barChart1" style="display: flex;"></div>
+        <!-- <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions"
+          style="width: 90%; height: 150px; display: block;">
+        </highcharts-chart> -->
+      </div>
+      <div class="row chips">
+
+        <div [chart]="chart"></div>
+      </div>
+
+
+      <div class="row icon-btn">
+      </div>
+
+    </div>
+
+
+    <!-- Third box of calls -->
+    <div class="row border-grey section-space">
+      <div [class]="reviewcss.callscss" (click)=calls()>
+        <p class="cardtitle">
+          Calls
+        </p>
+        <p class="cardnum">
+          {{finalcalls}}
+        </p>
+        <p class="cardchange">
+          MoM : {{ finalcalls > 0 && oldcalls > 0 ? ((finalcalls - oldcalls) / oldcalls * 100).toString().split(".")[0]
+          :
+          finalcalls > 0 ? "+100" : "-" }} %
+        </p>
+
+      </div>
+      <div [class]="reviewcss.locationcss" (click)=location()>
+        <p class="cardtitle">
+          Relevant Searches Near You
+        </p>
+        <p class="cardnum">
+          {{finalsearch.Searches}}
+        </p>
+        <p class="cardchange">
+          MoM : {{ finalsearch.Searches > 0 && oldsearch.Searches > 0 ? ((finalsearch.Searches -
+          oldsearch.Searches) /
+          oldsearch.Searches *
+          100).toString().split(".")[0] :
+          finalsearch.Searches > 0 ? "+100" : "-" }} %
+        </p>
+      </div>
+
+      <div class="row chips">
+        <div id="barChart2" style="display: flex;"></div>
+        <!-- <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions"
+              style="width: 90%; height: 150px; display: block;">
+            </highcharts-chart> -->
+      </div>
+      <div class="row chips">
+
+        <div [chart]="chart"></div>
+
+      </div>
+
+      <div class="row icon-btn">
+        <table style="width:100%">
+          <tbody>
+            <tr class="for-duration-font">
+              <th class="bottom-icons" style="width:15%"><a target="_blank"
+                  href="https://wa.me/+917337063737?lang=en&text=I%20want%20to%20improve%20my%20digital%20presence.%20Call%20back."><i
+                    class="fa fa-whatsapp"></i></a></th>
+              <th class="bottom-icons" style="width:15%"><a href="tel:7337063737"><i class="fa fa-phone"></i></a></th>
+              <th class="bottom-icons" style="width:15%"><a href="mailto:someone@example.com"><i
+                    class="fa fa-envelope"></i></a></th>
+              <th class="bottom-icons" style="width:15%"></th>
+              <th class="click-text" style="width:40%"><u><a href="tel:7337063737">Boost calls</a></u></th>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+
+
+    <!-- Fourth box of google search -->
+    <div class="row border-grey section-space">
+      <div [class]="mainjson.googlecss" (click)=rungooglesearch()>
+        <p class="cardtitle">
+          Avg. Google search rank
+        </p>
+        <p class="cardnum">
+          {{tablevalue}}
+        </p>
+        <p class="cardchange">
+          Path to #1 on Google search
+        </p>
+
+      </div>
+      <div [class]="mainjson.compcss" (click)=runcompsearch()>
+        <p class="cardtitle">
+          Competitor analysis
+        </p>
+        <p class="cardnum">
+          {{compvalue}}
+        </p>
+        <p class="cardchange">
+          You ranked {{compvalue}} among competitors
+        </p>
+      </div>
+
+      <div class="row chips yscroll">
+
+
+        <div class="check" *ngIf="tableflag == 1; else comptable">
+
+          <div class="box-area" *ngFor="let item of outputtable">
+            <p class="keyword-text no-margin">
+              Keyword: {{item.keyword}}
+            </p>
+            <p class="secondline no-margin">
+              Search volume: <span class="purple">{{item.searchvolume}}</span> | <span class="purple">Rank:
+                {{item.rank}}</span>
+            </p>
+
+          </div>
+        </div>
+
+        <ng-template #comptable>
+          <div class="box-area" *ngFor="let item of outputtable">
+            <p class="keyword-text no-margin">
+              Business name: {{item.keyword}}
+            </p>
+            <p class="secondline no-margin">
+              <span class="purple">Rank:
+                {{item.rank}}</span>
+            </p>
+
+          </div>
+        </ng-template>
+
+        <!-- <div class="box-area">
+          <p class="keyword-text no-margin">
+            Keyword: Liver transplant in hyderabad
+          </p>
+          <p class="secondline no-margin">
+            Search volume: <span class="purple">1000</span> | <span class="purple">Not ranked, needs
+              improvement</span>
+          </p>
+
+        </div> -->
+
+      </div>
+
+      <div class="row icon-btn">
+      </div>
+
+    </div>
+
+
+    <!-- Fourth box -->
+    <div class="border-grey section-space">
+      <div class="p-3">
+        <div class="text-title purple">
+          Recommendations
+        </div>
+        <div class="sub-title no-margin">
+          Add more photos
+        </div>
+        <div class="paragraph-text">
+          Can capture 99.4% more views with more photos and posts
+        </div>
+
+        <div class="sub-title no-margin">
+          Reply back to google reviews
+        </div>
+        <div class="paragraph-text">
+          To optimize the profile, setup a process to flag and remove negative reviews and respond back to positive
+          reviews.
+        </div>
+
+        <div class="sub-title no-margin">
+          Top keywords to focus
+        </div>
+        <div class="paragraph-text">
+          <ul>
+            <li *ngFor="let item of focuskeywords">
+              {{item}}
+            </li>
+          </ul>
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+    <div class="sticky-footer">
+      <table style="width:100%">
+        <tbody>
+          <tr>
+            <th style="width:33%"><a target="_blank"
+                href="https://wa.me/+917337063737?lang=en&text=I%20want%20to%20improve%20my%20digital%20presence.%20Call%20back."><i
+                  class="fa fa-whatsapp"></i></a></th>
+            <th style="width:33%"><a href="tel:7337063737"><i class="fa fa-phone"></i></a></th>
+            <th style="width:33%" [routerLink]="['/faqs']">
+              <i class="fa fa-question-circle"></i>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</ion-content>

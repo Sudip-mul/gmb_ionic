@@ -7,6 +7,7 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { HttpClientModule } from '@angular/common/http';
+import { ChartModule } from 'angular-highcharts';
 
 
 @NgModule({
@@ -14,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule, HighchartsChartModule, HttpClientModule
+    HomePageRoutingModule, HighchartsChartModule, HttpClientModule, ChartModule
   ],
   declarations: [HomePage]
 })

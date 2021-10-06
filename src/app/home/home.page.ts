@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
 
 import { DataService } from '../services/data.service';
+import {interval} from 'rxjs';
 
 
 @Component({
@@ -74,31 +75,64 @@ export class HomePage implements OnInit {
     callsoutput: any = {}
     // chart:any
     searchoutput: any = {}
+    docname: any = "Please check the internet!"
+
+    reportcss: any = 'reportarea purpletext mb-0';
 
     constructor(private route: ActivatedRoute, private router: Router, private data: DataService) {
 
-        this.userid = JSON.parse(localStorage.getItem('userid'))
+            // interval(1200).subscribe(() => {
+            //     let colors = ['reportarea purpletext mb-0', 'reportarea redtext mb-0']
+            //     console.log("execute after 2 seconds")
+            //     // console.log("This is i: " + i)
+            //     console.log(colors[Math.floor((Math.random()*colors.length))])
+            //    this.reportcss =  colors[Math.floor((Math.random()*colors.length))];
+            // });
 
-        if (localStorage.getItem('userid') == '{}') {
-            this.router.navigate(['/login'])
+            
+            let counter = 0
+            interval(1200).subscribe(() => {
+                let colors = ['reportarea purpletext mb-0', 'reportarea redtext mb-0']
+                if (counter == 20){
+                    counter = 0
+                }
+                else {
+                    if (counter % 2 == 0){ 
+                   this.reportcss =  colors[0];
+                }
+                else{
+                    this.reportcss =  colors[1];
+                }
+                counter += 1;
+                }
+
+            });
+
+
+
+    }
+
+    ionViewWillEnter(){
+        if (localStorage.getItem('userid') == null || localStorage.getItem('userid') == '{}'){
+            this.router.navigateByUrl('/login')
         }
 
+        this.userid = JSON.parse(localStorage.getItem('userid'))
         this.data
             .geteverything(this.userid['id']).subscribe((res) => {
                 this.alldata = res
                 console.log("Madhu")
                 console.log(this.alldata)
-                if (this.alldata == null) {
-                    this.router.navigate(['/login'])
-                }
+                // if (this.alldata == null) {
+                //     this.router.navigate(['/login'])
+                // }
 
                 localStorage.setItem('alldata', JSON.stringify(res))
                 this.getuserinfo(this.userid["id"])
 
             });
-
-
     }
+
     getChart() {
        
         // highcharts = Highcharts;
@@ -313,7 +347,12 @@ export class HomePage implements OnInit {
     getreviews() {
         let reviewres: any
         console.log(this.alldata)
-        reviewres = JSON.parse(this.alldata['reviews_json'])
+        try{
+            reviewres = JSON.parse(this.alldata['reviews_json'])
+        }
+        catch(r){
+            console.log(r)
+        }
         console.log(reviewres)
         // this.data
         //     .getreviews(function_name, email, loc).subscribe((reviewres) => {
@@ -730,14 +769,14 @@ export class HomePage implements OnInit {
                 //  console.log(userres)
                 localStorage.setItem('userdata', JSON.stringify(userres))
                 this.getdetail(userres)
+                this.docname =  "Welcome " + (userres.BusinessName.length > 25 ? (userres.BusinessName.substr(0, 24) + "...") : userres.BusinessName)
             });
     }
 
 
 
-
-
     ngOnInit(): void {
+
         // console.log("Working")
 
         this.finalchips = { "No text!": "" }
@@ -757,9 +796,14 @@ export class HomePage implements OnInit {
         // }
         //  });
 
+        // for (let i = 0; i < 20; i++){
+
+        // }
+
 
 
     }
+
 
 
     negreviews() {
@@ -820,11 +864,18 @@ export class HomePage implements OnInit {
          this.forgraph['data'].push(this.cleansearchouput[j]['data'])
         }
 
+        this.forgraph['labels'] = ["Direct searches", "Discovery searches", "Branded searches"]
+
+
      this.getChart()
 
 
     }
 
+
+    monthlyreport(){
+        this.router.navigate(['/monthlyreport'])        
+    }
 
 
     logout(){

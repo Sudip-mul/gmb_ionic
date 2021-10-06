@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-postpage',
@@ -13,7 +13,7 @@ export class PostpagePage implements OnInit {
 
   doctorphoto: any = './assets/doctor_pic.png';
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
 
@@ -44,5 +44,11 @@ export class PostpagePage implements OnInit {
       }
        });
   }
+
+  
+  monthlyreport(){
+    this.router.navigate(['/monthlyreport'])        
+}
+
 
 }

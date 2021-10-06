@@ -1,6 +1,6 @@
 import { KeyValue } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
 import { ObjectUnsubscribedError } from 'rxjs';
 import { DataService } from '../services/data.service';
@@ -60,7 +60,7 @@ userdata: any;
    posts: any = {"curpost": [], "oldpost": [], "compost": 18, "comoldpost": 12}
    postsoutput: any = {}
 
-  constructor(private data: DataService) {
+  constructor(private data: DataService, private router: Router) {
     this.userdata = localStorage.getItem('userdata')
     this.userdata = JSON.parse(this.userdata)
 
@@ -216,5 +216,9 @@ userdata: any;
          this.displayreviews = this.curreviews['posreviews']
       }
 
+
+      monthlyreport(){
+         this.router.navigate(['/monthlyreport'])        
+     }
 
    }

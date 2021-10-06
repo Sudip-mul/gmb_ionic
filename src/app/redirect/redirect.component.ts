@@ -16,11 +16,22 @@ userid: any;
     this.route.queryParams.subscribe(params => {
       if (params) {
       //   let queryParams = JSON.parse(params);
-      //   console.log(params)
+      if(params.hasOwnProperty('id')){
+        console.log(JSON.stringify(params))
       localStorage.setItem('userid', JSON.stringify(params)) 
       this.router.navigate(['/home'])
+    }
+    else{
+      this.router.navigate(['/login'])
+    }
       
    }
+   else{
+    this.router.navigate(['/login'])
+  }
+
+
+
     });
   }
 

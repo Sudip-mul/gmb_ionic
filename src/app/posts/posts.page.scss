@@ -128,6 +128,15 @@
     border-bottom: 1px solid #ececec;
   }
 
+  .reportarea{
+    color: #7c3a85;
+    text-align: center;
+    border: 1px solid #fdfcfd;
+    border-radius: 5px;
+    background-color: #fdfcfd;
+    padding: 3px 10px 3px 10px;
+  }
+
   .postreviewarea{
   @extend .reviewarea;
     justify-content: center;

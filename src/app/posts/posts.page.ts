@@ -220,6 +220,11 @@ duration: any = '';
          this.usethispost =  'comppost_json'         
       }
 
+      
+      monthlyreport(){
+         this.router.navigate(['/monthlyreport'])        
+     }
+
 
 
    }

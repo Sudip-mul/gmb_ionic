@@ -32,34 +32,10 @@
     border: 0;
     width: 40px;
     height: 40px;
-    margin-bottom: 14%;
+    border-radius: 100%;
     margin-top: 14%;
-    border-radius: 100%;
+    margin-bottom: 14%;
     float: right;
-  }
-
-  .reportarea{
-    color: #7c3a85;
-    text-align: center;
-    border: 1px solid #fdfcfd;
-    border-radius: 5px;
-    background-color: #fdfcfd;
-    padding: 3px 10px 3px 10px;
-  }
-
-
-  .drimagewithtext{
-    max-width: 100%;
-    border: 0;
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-  }
-
-
-  .firstarea{
-    align-items: center;
-    margin-bottom: 10px;
   }
   
   .dots-icon{
@@ -70,7 +46,7 @@
     font-size: 21px;
     text-align: left;
   }
-  
+    
   .for-duration-font{
     color: #636363;
     font-size: 15px;
@@ -142,16 +118,6 @@
     margin-right: 3%;
     width: 100%;
   }
-
-  .reviewarea{
-    margin-top: 5%;
-    margin-bottom: 5%;
-    margin-left: 3%;
-    margin-right: 3%;
-    width: 100%;
-    border-bottom: 1px solid #ececec;
-  }
-
   
   .chiptext{
     border: 2px solid #7C3A85;
@@ -180,6 +146,9 @@
     margin-left: 3%;
     margin-right: 3%;
     width: 100%;
+    a{
+      color:#7C3A85;
+    }
   }
   
   .section-space{
@@ -206,19 +175,53 @@
   text.highcharts-credits {
     display: none !important;
   }
+
+  .doc-pro-image{
+    width: 320px;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
+  }
+
+  .box-area{
+    background-color: #fde6ff78;
+    padding: 10px;
+    font-size: 13px;
+    margin-bottom: 7px;
+    border-radius: 5px;
+  }
+
+  p.no-margin{
+    margin-bottom: 0px;
+
+  }
+
+  .purple{
+    color: #7C3A85;
+    font-weight: 600;
+  }
+
+  .text-title{
+    font-size: 16px;
+  }
+
+  .sub-title{
+    font-weight: 600;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+
+  .dontdisplay{
+    display: none;
+  }
+
+  .yscroll{
+    overflow-y: scroll;
+    height: 200px;
+  }
   
   // .padarea{
   //   margin: 2%;
   // }
   
-
-  .selected{
-      color: rgba(165, 168, 0, 0.658);
-  }
-
-  .notselected{
-      color: rgba(165, 168, 0, 0.658);
-  }
   
   // desktop css starts here
   
