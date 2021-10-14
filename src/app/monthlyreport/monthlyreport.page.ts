@@ -816,6 +816,20 @@ rungooglesearch(){
 
 runcompsearch(){
     this.outputtable = this.compsearch(this.alldata['comp_search'],this.alldata['business_name'])[0]
+    console.log(this.outputtable)
+    let seqnum = 30
+    for (let i = 0; i< this.outputtable.length; i++){
+        if (this.outputtable[i]['rank'] == '-'){
+            this.outputtable[i]['sequence'] = seqnum
+            seqnum -= 1
+        }
+        else{
+            this.outputtable[i]['sequence'] = this.outputtable[i]['rank']
+        }
+    }
+    this.outputtable = this.outputtable.sort(function(x,y){return x["sequence"] - y["sequence"]});
+    console.log(this.outputtable)
+
     this.mainjson['googlecss'] = 'col-6 inactive'
     this.mainjson['compcss'] = 'col-6 active'
     this.tableflag = 0

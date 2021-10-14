@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Google DocRank</string>
-    <string name="title_activity_main">Google DocRank</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="app_name">DocRank My Business</string>
+    <string name="title_activity_main">DocRank My Business</string>
+    <string name="package_name">io.docrank.gmb</string>
+    <string name="custom_url_scheme">io.docrank.gmb</string>
 </resources>
