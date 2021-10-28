@@ -77,6 +77,8 @@ getposts(function_name: any, email: any, loc: any) {
 
 
 
+
+
 getchips(reviews: any) {
   let formData  =  {
       "reviews": reviews
@@ -87,8 +89,18 @@ getchips(reviews: any) {
     return res
   }));
 }
-
-
+doclog(userid: any) {
+  let formData  = new HttpParams({
+    fromObject: {
+      "userid": userid
+    }
+  });
+    console.log(formData);
+ return this.http.post<any>(environment.apiurl + "doctorlogs.php", (formData), this.requestOptionsnew).pipe(map(res => {
+  //  console.log(res)
+    return res
+  }));
+}
 
 
 }

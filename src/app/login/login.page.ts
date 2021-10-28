@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginPage implements OnInit {
 
   data: any = 'Enter code'
 
-  constructor(private route: Router) {
+  constructor(private route: Router, private log: DataService) {
 
    }
 
@@ -27,8 +28,13 @@ export class LoginPage implements OnInit {
 
 
   sendCode(){
-    console.log(this.code)
     this.route.navigateByUrl('/redirect?id='+this.code)
+    console.log(this.code)
+    
+    this.log
+            .doclog(this.code).subscribe((res) => {
+              console.log(res);
+            });
   }
 
 

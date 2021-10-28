@@ -360,6 +360,7 @@ export class HomePage implements OnInit {
         console.log(this.reviewsdata['totalReviewCount'])
         console.log("This is reviews data")
         console.log(reviewres)
+        
 
         for (let i = 0; i < reviewres['reviews'].length; i++) {
             this.allreviews.push(reviewres['reviews']['comment'])
